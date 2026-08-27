@@ -20,6 +20,8 @@ The light treatment is deliberately warm, like a marked-up revision notebook; th
 
 All foreground/token combinations used for text meet WCAG AA. State is always paired with an icon or label, never color alone. The mode follows the operating system; both are explicitly painted.
 
+The generated-route summary uses its own contrast-safe signal treatment: light mode retains coral `#FF8A73` on the ink summary; dark mode uses deep coral `#9B291C` on the parchment summary (6.79:1). This preserves the deadline marker’s meaning after the summary reverses its surface in dark mode.
+
 ## Typography and spacing
 
 - Display: `Georgia`, `Iowan Old Style`, `Times New Roman`, serif. The irregular editorial serif makes the deadline feel consequential, not gamified.

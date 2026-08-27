@@ -2,6 +2,7 @@ import './styles.css';
 import { summarizeDeck } from './csv';
 import { localToday, makePlan, validateInput } from './planner';
 import { clearState, loadState, saveState } from './storage';
+import { parsePersistedState } from './state-validation';
 import { checkoutUrl, hasPaidAccess, removeLicense, restoreLicense, storeReturnedLicense, verifyLicense } from './license';
 import type { Pace, PersistedState, PlanInput, StudyPlan } from './types';
 
@@ -18,6 +19,7 @@ const defaultInput: PlanInput = {
 };
 let state: PersistedState = { input: { ...defaultInput }, updatedAt: new Date().toISOString() };
 let plus = hasPaidAccess();
+let recoveryNeeded = false;
 
 const escapeHtml = (value: string) => value.replace(/[&<>'"]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' })[char]!);
 const formatDate = (value: string, options: Intl.DateTimeFormatOptions = { weekday: 'short', month: 'short', day: 'numeric' }) =>
@@ -37,6 +39,7 @@ async function persist(message = 'Saved locally'): Promise<void> {
 function inputTemplate(): string {
   const i = state.input;
   return `<form id="plan-form" class="plan-form" novalidate>
+    ${recoveryNeeded ? '<div class="notice danger" role="alert"><strong>Local plan data needs recovery.</strong><p>An older saved backup is incomplete, so it was not opened. You can safely clear that invalid local copy and start from this form.</p><button id="recover-invalid-data" class="text-button danger-text" type="button">Clear invalid local data</button></div>' : ''}
     <div class="route-steps" aria-hidden="true"><span class="active">1 Deck</span><i></i><span>2 Horizon</span><i></i><span>3 Pace</span></div>
       <div id="form-errors" class="form-errors" role="alert" tabindex="-1" hidden></div>
     <fieldset class="form-section">
@@ -129,6 +132,10 @@ function render(): void {
 function bindForm(): void {
   const form = document.querySelector<HTMLFormElement>('#plan-form')!;
   const file = document.querySelector<HTMLInputElement>('#deck-file')!;
+  document.querySelector('#recover-invalid-data')?.addEventListener('click', async () => {
+    try { await clearState(); recoveryNeeded = false; savedState.textContent = 'Invalid local data cleared'; render(); announce('Invalid local data cleared. You can start a new route.'); }
+    catch { announce('Could not clear local data on this device.'); }
+  });
   file.addEventListener('change', async () => {
     const selected = file.files?.[0]; if (!selected) return;
     const status = document.querySelector<HTMLElement>('#import-status')!;
@@ -181,7 +188,11 @@ function openDataDialog(): void {
   dialog.querySelector('#export-json')?.addEventListener('click', () => { download('exam-deadline-map-backup.json', JSON.stringify(state, null, 2), 'application/json'); announce('Local backup exported.'); });
   dialog.querySelector<HTMLInputElement>('#import-json')?.addEventListener('change', async (event) => {
     const file = (event.target as HTMLInputElement).files?.[0]; if (!file) return;
-    try { const imported = JSON.parse(await file.text()) as PersistedState; if (!imported.input) throw new Error(); state = imported; await persist('Backup imported'); dialog.close(); render(); }
+    try {
+      const imported = parsePersistedState(JSON.parse(await file.text()));
+      if (!imported) throw new Error('Invalid backup');
+      state = imported; recoveryNeeded = false; await persist('Backup imported'); dialog.close(); render();
+    }
     catch { announce('That backup is not valid. No data was changed.'); }
   });
   dialog.querySelector('#delete-data')?.addEventListener('click', async () => {
@@ -205,7 +216,14 @@ function openLicenseDialog(): void {
 
 async function boot(): Promise<void> {
   const returned = storeReturnedLicense(); plus = hasPaidAccess();
-  try { state = (await loadState()) || state; } catch { savedState.textContent = 'Local storage unavailable'; }
+  try {
+    const stored = await loadState();
+    if (stored !== undefined) {
+      const parsed = parsePersistedState(stored);
+      if (parsed) state = parsed;
+      else { recoveryNeeded = true; savedState.textContent = 'Local data needs recovery'; }
+    }
+  } catch { savedState.textContent = 'Local storage unavailable'; }
   render();
   document.querySelector('#data-button')?.addEventListener('click', openDataDialog);
   document.querySelector('#license-button')?.addEventListener('click', openLicenseDialog);

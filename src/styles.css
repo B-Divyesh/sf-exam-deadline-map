@@ -100,7 +100,7 @@ summary span { margin-left: auto; color: var(--muted); font-size: .82rem; font-w
 .deadline-seal { flex: 0 0 110px; height: 110px; border: 2px solid var(--accent); border-radius: 50%; display: grid; place-content: center; text-align: center; text-transform: uppercase; font-size: .72rem; letter-spacing: .15em; transform: rotate(5deg); z-index: 1; }
 .deadline-seal span { font: 600 2.1rem/1 var(--serif); letter-spacing: 0; }
 .deadline-seal small { color: var(--accent); font-weight: 900; }
-.plan-summary .kicker, .deadline-seal small { color: #ff8a73; }
+.plan-summary .kicker, .deadline-seal small { color: var(--summary-accent, #ff8a73); }
 .notice { padding: 15px 18px; margin: 18px 0; border-left: 4px solid; background: color-mix(in srgb, currentColor 7%, transparent); }
 .notice strong { font-family: var(--serif); font-size: 1.12rem; }
 .notice p { margin: 2px 0 0; color: var(--muted); }
@@ -143,7 +143,7 @@ footer p { margin: 0; } footer nav { display: flex; gap: 20px; }
 @keyframes route-in { from { transform: translateY(8px); } }
 
 @media (prefers-color-scheme: dark) {
-  :root { --paper: #171713; --sheet: #23231d; --ink: #f7f0e3; --muted: #bfc5bc; --accent: #f2775f; --accent-ink: #201814; --moss: #70c3a0; --ochre: #f2c767; --danger: #ff8faa; --rule: #4a4a40; --shadow: rgba(0, 0, 0, .35); }
+  :root { --paper: #171713; --sheet: #23231d; --ink: #f7f0e3; --muted: #bfc5bc; --accent: #f2775f; --accent-ink: #201814; --moss: #70c3a0; --ochre: #f2c767; --danger: #ff8faa; --rule: #4a4a40; --shadow: rgba(0, 0, 0, .35); --summary-accent: #9b291c; }
   .hero-art::before { background: var(--accent); }.hero-art img { filter: brightness(.86) contrast(1.03); }
   :focus-visible, .day-check:focus-visible + .custom-check { outline-color: var(--ochre); }
   #deck-file:focus-visible + .button { outline-color: var(--ochre); }

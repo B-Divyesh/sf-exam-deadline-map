@@ -11,7 +11,7 @@ Live site: [exam-deadline-map.sociobot.in](https://exam-deadline-map.sociobot.in
 - Flexible CSV import with quoted-field support and `reps`, `reviews`, `type`, or `status` classification
 - Editable timings, passes, repetitions, exam date, and daily minute cap
 - Steady free plan with visible overload and unscheduled-work warnings
-- Day completion tracking, calendar CSV export, and full JSON backup/import
+- Day completion tracking, calendar CSV export, and schema-validated JSON backup/import
 - IndexedDB persistence; deck data never leaves the browser
 - Installable PWA with a verified offline return path
 - Light and dark treatments, keyboard operation, reduced-motion fallback
@@ -64,9 +64,9 @@ The app uses the Sociobot license API and never embeds a payment provider. Produ
 
 ## Deployment and privacy
 
-Deploy the contents of `dist/` to any static host with clean-directory support. `/privacy/` and `/terms/` are static routes. The service worker precaches the app shell and discovers Vite’s hashed entry assets during installation.
+Deploy the contents of `dist/` to any static host with clean-directory support. `/privacy/` and `/terms/` are static routes. The build generates `staticwebapp.config.json` for Azure Static Web Apps: it sets a self-only CSP, denies framing, and sends immutable one-year caching only for the generated content-hashed JS/CSS assets. The service worker precaches the app shell and discovers Vite’s hashed entry assets during installation.
 
-User plan data is local in IndexedDB. License tokens and their cached daily verdict are localStorage entries. There are no analytics, ads, third-party fonts, or third-party runtime scripts.
+User plan data is local in IndexedDB. Backups and stored records are schema-checked before use; if an older malformed record is found, the app stays usable and provides an in-app clear-data recovery action. License tokens and their cached daily verdict are localStorage entries. There are no analytics, ads, third-party fonts, or third-party runtime scripts.
 
 ## License
 

@@ -1,4 +1,5 @@
 import type { PersistedState } from './types';
+import { parsePersistedState } from './state-validation';
 
 const DATABASE = 'exam-deadline-map';
 const STORE = 'state';
@@ -13,18 +14,19 @@ function database(): Promise<IDBDatabase> {
   });
 }
 
-export async function loadState(): Promise<PersistedState | undefined> {
+export async function loadState(): Promise<unknown> {
   const db = await database();
   return new Promise((resolve, reject) => {
     const transaction = db.transaction(STORE, 'readonly');
     const request = transaction.objectStore(STORE).get(KEY);
-    request.onsuccess = () => resolve(request.result as PersistedState | undefined);
+    request.onsuccess = () => resolve(request.result);
     request.onerror = () => reject(request.error);
     transaction.oncomplete = () => db.close();
   });
 }
 
 export async function saveState(state: PersistedState): Promise<void> {
+  if (!parsePersistedState(state)) throw new Error('Refusing to save invalid local planner data.');
   const db = await database();
   return new Promise((resolve, reject) => {
     const transaction = db.transaction(STORE, 'readwrite');
