@@ -12,7 +12,7 @@ const inThirtyDays = new Date();
 inThirtyDays.setDate(inThirtyDays.getDate() + 30);
 
 const defaultInput: PlanInput = {
-  deckName: 'My exam deck', reviewCards: 300, newCards: 80,
+  deckName: '', reviewCards: 0, newCards: 0,
   examDate: localToday(inThirtyDays), dailyMinutes: 35,
   secondsPerReview: 10, secondsPerNew: 35, reviewPasses: 2, newRepetitions: 3, pace: 'steady',
 };

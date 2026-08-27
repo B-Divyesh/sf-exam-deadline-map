@@ -25,6 +25,9 @@ serious = serious.concat(darkAccessibility.violations.filter((item) => ['serious
 await page.emulateMedia({ colorScheme: 'light', reducedMotion: 'no-preference' });
 const onlineErrors = [...errors];
 
+await page.getByLabel('Deck name').fill('Biology finals');
+await page.getByLabel('Cards seen before').fill('300');
+await page.getByLabel('Brand-new cards').fill('80');
 await page.getByRole('button', { name: /Draw my plan/i }).click();
 await page.locator('.day-card').first().waitFor();
 const planAccessibility = await new AxeBuilder({ page }).analyze();
