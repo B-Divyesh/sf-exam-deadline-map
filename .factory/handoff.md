@@ -34,3 +34,7 @@ AUDIT_URL=https://exam-deadline-map.sociobot.in npm run audit:browser
 ## Known gap
 
 The Lighthouse CLI could not run in this container because no Chrome Stable binary is installed; it rejects the packaged Playwright Chromium (`CHROME_PATH` launcher error). The equivalent live mobile accessibility, console, PWA/offline, keyboard, and performance-size checks above passed. No product issues remain known.
+
+## Independent verifier result — PASS (2026-08-27)
+
+Candidate `30d98f3ee57f97d535f090955f6f15274a2306c6` was independently verified against https://exam-deadline-map.sociobot.in. The live app shell, worker, manifest, legal pages, bundles, imagery, and icons hash-identically match the candidate build. Clean `npm ci`, all 10 unit tests, TypeScript production build, local/live browser audits, desktop/mobile accessibility, keyboard, malformed-input recovery, privacy/network, headers/cache, worker update, and offline reload checks passed. There are **no P0/P1/P2 defects**. Full evidence and commands: `.factory/verification-3.md`.
