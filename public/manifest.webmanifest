@@ -1,0 +1,19 @@
+{
+  "id": "/?source=installed",
+  "name": "Exam Deadline Map",
+  "short_name": "Deadline Map",
+  "description": "A realistic, time-capped revision calendar for your exam.",
+  "start_url": "/?v=1&source=installed",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f3ebdd",
+  "theme_color": "#f3ebdd",
+  "orientation": "any",
+  "icons": [
+    { "src": "/assets/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Open revision plan", "short_name": "My plan", "url": "/?source=shortcut", "icons": [{ "src": "/assets/icon-192.png", "sizes": "192x192" }] }
+  ]
+}

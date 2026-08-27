@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f3ebdd" />
+    <meta name="description" content="Turn an exported flashcard deck into a realistic, time-capped revision calendar for your exam." />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="/assets/icon-192.png" />
+    <title>Exam Deadline Map — a realistic revision route</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to planner</a>
+    <header class="site-header">
+      <a class="wordmark" href="/" aria-label="Exam Deadline Map home">
+        <span class="wordmark-mark" aria-hidden="true"></span>
+        <span>Exam Deadline Map</span>
+      </a>
+      <nav aria-label="Primary">
+        <button class="nav-button" id="data-button" type="button">Your data</button>
+        <button class="nav-button" id="license-button" type="button">Plan Plus</button>
+      </nav>
+    </header>
+    <main id="main">
+      <section class="hero" aria-labelledby="page-title">
+        <div class="hero-copy">
+          <p class="eyebrow"><span aria-hidden="true">●</span> A finite route, not a forever streak</p>
+          <h1 id="page-title">See the work between <em>today</em> and exam day.</h1>
+          <p class="lede">Import your deck counts, set the minutes you actually have, and get a day-by-day revision map that calls out overload before it becomes a final-week surprise.</p>
+          <ul class="trust-list" aria-label="Product promises">
+            <li>Deck data stays on this device</li>
+            <li>Every assumption is editable</li>
+            <li>Works offline after first visit</li>
+          </ul>
+        </div>
+        <figure class="hero-art">
+          <picture>
+            <source media="(max-width: 700px)" srcset="/assets/hero-observatory-640.webp" />
+            <img src="/assets/hero-observatory-960.webp" width="960" height="640" alt="A paper observatory feeds a calendar-tile path toward a coral flag on the horizon." fetchpriority="high" decoding="async" />
+          </picture>
+          <figcaption>Your deck becomes a route with a visible horizon.</figcaption>
+        </figure>
+      </section>
+
+      <section class="planner-shell" aria-labelledby="planner-heading">
+        <div class="section-heading">
+          <div><p class="kicker">Route desk</p><h2 id="planner-heading">Build your revision map</h2></div>
+          <p id="saved-state" class="saved-state" role="status" aria-live="polite">Saved locally</p>
+        </div>
+        <div id="app"><p class="loading-state" role="status">Opening your local map…</p></div>
+      </section>
+
+      <section class="method" aria-labelledby="method-heading">
+        <p class="kicker">What the map knows</p>
+        <h2 id="method-heading">Transparent by design</h2>
+        <div class="method-grid">
+          <article><span>01</span><h3>Your actual capacity</h3><p>Minutes are a constraint, not a motivational target. The map uses a maximum 15-minute overflow band and leaves excess work visibly unscheduled.</p></article>
+          <article><span>02</span><h3>Repetition, made legible</h3><p>New cards cost more than familiar reviews. You control both timings and the number of passes instead of trusting a hidden score.</p></article>
+          <article><span>03</span><h3>Planning, not prophecy</h3><p>This is planning support—not a prediction of memory, grades, or exam results. Adjust the map whenever real study differs from the estimate.</p></article>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <p>Made for calm, bounded revision. Original AI-assisted editorial artwork.</p>
+      <nav aria-label="Legal"><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="https://github.com/B-Divyesh/sf-exam-deadline-map" rel="noreferrer">Source</a></nav>
+    </footer>
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
