@@ -12,7 +12,7 @@ The light treatment is deliberately warm, like a marked-up revision notebook; th
 | Sheet / surface | `#FFF9EE` | `#23231D` | working layer |
 | Ink / text | `#18201D` | `#F7F0E3` | primary copy |
 | Pencil / muted | `#59635E` | `#BFC5BC` | secondary copy |
-| Coral / accent | `#C6422B` | `#F2775F` | deadline and primary action |
+| Coral / accent | `#AD3825` | `#F2775F` | deadline and primary action |
 | Moss / success | `#285E4D` | `#70C3A0` | workable capacity |
 | Ochre / warning | `#86610C` | `#F2C767` | overload warning |
 | Plum / danger | `#852F49` | `#FF8FAA` | invalid and destructive states |

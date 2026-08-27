@@ -1,0 +1,30 @@
+{
+  "slug": "exam-deadline-map",
+  "title": "Exam Deadline Map",
+  "territory": "utilities",
+  "user": "A self-directed learner with an exam date who needs a realistic day-by-day revision plan without turning every deck up to maximum intensity for months.",
+  "evidence": [
+    {
+      "url": "https://hn.algolia.com/api/v1/items/46494631",
+      "date": "2026-01-05",
+      "quote_or_summary": "The asker says vocabulary learners do the usual streaks and flashcards for months yet still forget words when they need them."
+    },
+    {
+      "url": "https://github.com/open-spaced-repetition/fsrs-rs/issues/435",
+      "date": "2026-07-25",
+      "quote_or_summary": "A learner explicitly requests a deadline-aware 0.95-retention plan that bounds daily cramming time instead of a single year-round retention setting."
+    }
+  ],
+  "recurrence": "Two 2026 communities describe the same planning failure: long-term review controls do not translate into a bounded plan for a real date; the consequence is either panic cramming or avoidance.",
+  "current_workaround": "Raise Anki desired retention by hand, make a spreadsheet, or cram the backlog in the final week.",
+  "incumbents_and_gap": "Anki/FSRS schedules recall and RemNote offers exam dates, but neither makes a transparent, time-capped what-to-study calendar from an exported deck the primary product.",
+  "smallest_useful_product": "A local web app importing Anki CSV/review counts, an exam date, and daily minutes to produce a review/new-card calendar with overload warnings. Non-goals: replacing Anki, inventing card content, or proctoring.",
+  "success_measure": "In a 30-day pilot, 70% of users with a deadline follow the plan on at least 20 days and no planned day exceeds their stated time cap by more than 15 minutes.",
+  "artifact_class": "pwa-offline",
+  "monetization": "one-time — deadline planning is episodic and users should retain their study data locally.",
+  "constraints": "All deck data stays in-browser; forecast assumptions must be shown and editable; explicitly state that it is planning support, not a prediction of exam results.",
+  "est_build_effort": "M",
+  "why_distinct": "It is a constrained revision calendar over existing recall history, not another flashcard client or generic to-do list.",
+  "confidence": 5,
+  "state": "RESEARCHED"
+}

@@ -1,7 +1,7 @@
 :root {
   color-scheme: light dark;
   --paper: #f3ebdd; --sheet: #fff9ee; --ink: #18201d; --muted: #59635e;
-  --accent: #c6422b; --accent-ink: #fffaf2; --moss: #285e4d; --ochre: #86610c;
+  --accent: #ad3825; --accent-ink: #fffaf2; --moss: #285e4d; --ochre: #86610c;
   --danger: #852f49; --rule: #c9bdaa; --shadow: rgba(32, 28, 21, .16);
   --serif: Georgia, "Iowan Old Style", "Times New Roman", serif;
   --sans: Aptos, "Segoe UI", system-ui, sans-serif;
@@ -100,6 +100,7 @@ summary span { margin-left: auto; color: var(--muted); font-size: .82rem; font-w
 .deadline-seal { flex: 0 0 110px; height: 110px; border: 2px solid var(--accent); border-radius: 50%; display: grid; place-content: center; text-align: center; text-transform: uppercase; font-size: .72rem; letter-spacing: .15em; transform: rotate(5deg); z-index: 1; }
 .deadline-seal span { font: 600 2.1rem/1 var(--serif); letter-spacing: 0; }
 .deadline-seal small { color: var(--accent); font-weight: 900; }
+.plan-summary .kicker, .deadline-seal small { color: #ff8a73; }
 .notice { padding: 15px 18px; margin: 18px 0; border-left: 4px solid; background: color-mix(in srgb, currentColor 7%, transparent); }
 .notice strong { font-family: var(--serif); font-size: 1.12rem; }
 .notice p { margin: 2px 0 0; color: var(--muted); }
@@ -121,7 +122,7 @@ summary span { margin-left: auto; color: var(--muted); font-size: .82rem; font-w
 .day-date small, .day-date b { display: block; }.day-date small { color: var(--muted); text-transform: uppercase; font-size: .71rem; font-weight: 800; letter-spacing: .1em; }
 .task-count { display: flex; gap: 28px; font-size: .82rem; color: var(--muted); }.task-count b { display: block; color: var(--ink); font-size: 1.08rem; font-variant-numeric: tabular-nums; }
 .day-minutes { justify-self: end; display: grid; grid-template-columns: auto auto; align-items: baseline; column-gap: 4px; font-variant-numeric: tabular-nums; }.day-minutes b { font: 600 1.5rem var(--serif); }.day-minutes small { grid-column: 1 / -1; color: var(--ochre); font-size: .68rem; font-weight: 900; text-transform: uppercase; }
-.day-card.complete { opacity: .58; }.day-card.complete .day-date b, .day-card.complete .task-count { text-decoration: line-through; }
+.day-card.complete { background: color-mix(in srgb, var(--moss) 7%, transparent); }.day-card.complete .day-date b, .day-card.complete .task-count { text-decoration: line-through; }
 .plan-disclaimer { max-width: 70ch; margin: 28px 0 0; color: var(--muted); font-size: .86rem; }
 .method { max-width: 1240px; margin: 0 auto; padding: clamp(80px, 10vw, 150px) clamp(20px, 5vw, 64px); }
 .method-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(28px, 5vw, 70px); margin-top: 48px; }
@@ -139,7 +140,7 @@ footer p { margin: 0; } footer nav { display: flex; gap: 20px; }
 .danger-text, .error-copy { color: var(--danger); }.merchant-note, .legal-links { color: var(--muted); font-size: .82rem; }.legal-links { margin: 24px 0 0; }
 .visually-hidden { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important; }
 @keyframes settle { from { transform: translateY(18px) rotate(1.3deg); opacity: 0; } }
-@keyframes route-in { from { transform: translateY(8px); opacity: 0; } }
+@keyframes route-in { from { transform: translateY(8px); } }
 
 @media (prefers-color-scheme: dark) {
   :root { --paper: #171713; --sheet: #23231d; --ink: #f7f0e3; --muted: #bfc5bc; --accent: #f2775f; --accent-ink: #201814; --moss: #70c3a0; --ochre: #f2c767; --danger: #ff8faa; --rule: #4a4a40; --shadow: rgba(0, 0, 0, .35); }

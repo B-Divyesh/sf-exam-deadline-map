@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://exam-deadline-map.sociobot.in/sitemap.xml
